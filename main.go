@@ -9,8 +9,10 @@ import (
 )
 
 const (
-	FLAG_COUNT       = "count"
-	FLAG_ALIAS_COUNT = "c"
+	// FlagCount flag literal "count"
+	FlagCount = "count"
+	// FlagAliasCount flag alias for "count"
+	FlagAliasCount = "c"
 )
 
 func main() {
@@ -19,17 +21,17 @@ func main() {
 		Usage: "repeat characters",
 		Flags: []cli.Flag{
 			&cli.IntFlag{
-				Name:    FLAG_COUNT,
+				Name:    FlagCount,
 				Value:   1,
 				Usage:   "repeat count",
-				Aliases: []string{FLAG_ALIAS_COUNT},
+				Aliases: []string{FlagAliasCount},
 			},
 		},
 		Action: func(c *cli.Context) error {
 			if c.NArg() == 0 {
 				return nil
 			}
-			fmt.Println(repeat(c.Args().Get(0), c.Int(FLAG_COUNT)))
+			fmt.Println(repeat(c.Args().Get(0), c.Int(FlagCount)))
 			return nil
 		},
 		HideHelpCommand: true,
